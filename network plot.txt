@@ -14,3 +14,4 @@ ggplot(aa,aes(x=x,y=y,xend=xend,yend=yend))+
   scale_fill_manual(values = c("Firmicutes"=h[2],"Proteobacteria"=h[10],
                                "Bacteroidetes"=h[12],"Fusobacteria"="#00BFC4"))+
   guides(color="none")
+  # this is for network plot of my article.
