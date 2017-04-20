@@ -1,0 +1,16 @@
+h=brewer.pal(12, "Paired")
+edge <-read.table("clipboard",header=T,sep='\t',stringsAsFactors = F)
+node <-read.table("clipboard",header=T,sep='\t',stringsAsFactors = F)
+net=graph_from_data_frame(d=edge,directed = F,vertices = node)
+aa=fortify(net)
+ggplot(aa,aes(x=x,y=y,xend=xend,yend=yend))+
+  geom_nodes(aes(fill=phylum,size=size),shape=21)+
+  geom_edges(aes(color=correlation),size=1)+
+  geom_nodetext_repel(aes(label=vertex.names,color=phylum))+
+  theme_blank()+guides(size="none")+
+  scale_color_manual(values = c("positive"=h[6],"negative"=h[4],
+                                "Firmicutes"=h[2],"Proteobacteria"=h[10],
+                                "Bacteroidetes"=h[12],"Fusobacteria"="#00BFC4"))+
+  scale_fill_manual(values = c("Firmicutes"=h[2],"Proteobacteria"=h[10],
+                               "Bacteroidetes"=h[12],"Fusobacteria"="#00BFC4"))+
+  guides(color="none")
